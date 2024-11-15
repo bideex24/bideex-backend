@@ -8,14 +8,14 @@ const app: Application = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/check', (req: Request, res: Response) => {
-  const a = 5;
+app.get('/test', (req: Request, res: Response) => {
+  const a = 'bideex server test';
   res.send(a);
 });
 // application route
 app.use('/api', router);
 app.get('/', (req, res) => {
-  res.send('Welcome to Sports Sever!');
+  res.send('Welcome to bideex Sever!');
 });
 
 export default app;
