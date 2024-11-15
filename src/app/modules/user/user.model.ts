@@ -42,7 +42,7 @@ const userSchema = new Schema<TUser>(
       type: Boolean,
       default: false,
     },
-    verified: {
+    isVerified: {
       type: Boolean,
       default: false,
     },

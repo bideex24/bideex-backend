@@ -10,7 +10,7 @@ export interface TUser {
   needsPasswordChange: boolean;
   passwordChangedAt?: Date;
   isDeleted: boolean;
-  verified: boolean;
+  isVerified: boolean;
   verificationCode: string;
 }
 
