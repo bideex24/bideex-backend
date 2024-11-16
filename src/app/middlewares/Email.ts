@@ -6,7 +6,6 @@ export const sendVerificationCode = async (
   verificationCode: any,
 ) => {
   try {
-    console.log(email, verificationCode);
     await transporter.sendMail({
       from: '"Bideex Support " <support@bideex.com>', // sender address
       to: email, // list of receivers

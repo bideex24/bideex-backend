@@ -1,9 +1,11 @@
+import config from '../config';
+
 /* eslint-disable @typescript-eslint/no-require-imports */
 const nodemailer = require('nodemailer');
 
 export const transporter = nodemailer.createTransport({
-  host: 'bideex.com',
-  port: 587,
+  host: config.mail_host || 'bideex.com',
+  port: config.mail_port || 587,
   secure: false,
   auth: {
     user: 'support@bideex.com',
