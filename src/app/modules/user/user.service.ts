@@ -1,21 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
- 
 import { TUser } from './user.interfacr';
 import { User } from './user.model';
 
-const createuserIntoDB = async (userData: TUser) => {
+const createUserIntoDB = async (userData: TUser) => {
+  // const existingUser = await User.findOne({ email });
   const result = User.create(userData);
+  return result;
+};
+const getUserFromDB = async (email: any) => {
+  // const existingUser = await User.findOne({ email });
+  const result = User.find(email);
   return result;
 };
 const userEmailVerificationFromDB = async (code: TUser) => {
   const user = await User.findOne(code);
   if (!user) {
-    return 'Invalid Or Expired Code';
+    throw new Error('false');
   }
   (user.isVerified = true), (user.verificationCode = ''), await user.save();
   return user;
 };
 export const UserServices = {
-  createuserIntoDB,
+  createUserIntoDB,
+  getUserFromDB,
   userEmailVerificationFromDB,
 };

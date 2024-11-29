@@ -1,6 +1,7 @@
 export interface TUserName {
   firstName: string;
   lastName: string;
+  userName: string;
 }
 export interface TUser {
   id: string;

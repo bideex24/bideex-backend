@@ -7,4 +7,5 @@ export default {
   database_url: process.env.DATABASE_URL,
   mail_host: process.env.MAIL_HOST,
   mail_port: process.env.MAIL_PORT,
+  bcrypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
 };

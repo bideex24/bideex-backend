@@ -8,5 +8,6 @@ router.post(
   validateRequest(UserValidation.userValidationSchema),
   UserControllers.createUser,
 );
-router.post('/email-verify', UserControllers.userEmailVerify);
+router.get('/', UserControllers.getUser);
+router.post('/', UserControllers.userEmailVerify);
 export const userRoutes = router;
