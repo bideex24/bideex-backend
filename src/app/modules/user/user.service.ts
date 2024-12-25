@@ -13,16 +13,22 @@ const getUserFromDB = async (email: any) => {
   const result = User.find(email);
   return result;
 };
+const updateUserIntoDB = async (user: any) => {
+  // const existingUser = await User.findOne({ email });
+  const result = User.updateMany(user);
+  return result;
+};
 const userEmailVerificationFromDB = async (code: TUser) => {
   const user = await User.findOne(code);
   if (!user) {
     throw new Error('false');
   }
-  (user.isVerified = true), (user.verificationCode = ''), await user.save();
+  (user.emailVerified = true), (user.verificationCode = ''), await user.save();
   return user;
 };
 export const UserServices = {
   createUserIntoDB,
   getUserFromDB,
   userEmailVerificationFromDB,
+  updateUserIntoDB,
 };

@@ -22,6 +22,10 @@ const userNameSchema = new Schema<TUserName>({
     required: [true, 'Last Name is required'],
     maxlength: [20, 'Name can not be more than 20 characters'],
   },
+  fullName: {
+    type: String,
+    trim: true,
+  },
 });
 const userSchema = new Schema<TUser>(
   {
@@ -40,6 +44,27 @@ const userSchema = new Schema<TUser>(
       type: String,
       select: 0,
     },
+    phone: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    zipCode: {
+      type: Number,
+    },
+    country: {
+      type: String,
+    },
+    imagePath: {
+      type: String,
+    },
     needsPasswordChange: {
       type: Boolean,
       default: true,
@@ -51,7 +76,7 @@ const userSchema = new Schema<TUser>(
       type: Boolean,
       default: false,
     },
-    isVerified: {
+    emailVerified: {
       type: Boolean,
       default: false,
     },

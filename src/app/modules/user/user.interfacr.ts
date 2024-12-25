@@ -2,16 +2,24 @@ export interface TUserName {
   firstName: string;
   lastName: string;
   userName: string;
+  fullName: string;
 }
 export interface TUser {
   id: string;
   name: TUserName;
   email: string;
   password: string;
+  phone?: string;
+  address?: string;
+  city?: string;
+  state?: string;
+  zipCode?: number;
+  country?: string;
+  imagePath?: string;
   needsPasswordChange: boolean;
   passwordChangedAt?: Date;
   isDeleted: boolean;
-  isVerified: boolean;
+  emailVerified: boolean;
   verificationCode: string;
 }
 
