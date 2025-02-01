@@ -88,10 +88,6 @@ export const sendVerificationCode = async (
   </head>
   <body>
     <div class="email-container">
-      <!-- Header -->
-      <div class="header">
-        <img src="https://i.ibb.co.com/7pzZ76h/login-logo.png" alt="login-logo" border="0" />
-      </div>
       <!-- Main Content -->
       <div class="main">
         <div><i class="fa-solid fa-envelope-circle-check email"></i></div>

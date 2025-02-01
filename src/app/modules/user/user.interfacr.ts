@@ -6,9 +6,9 @@ export interface TUserName {
 }
 export interface TUser {
   id: string;
-  name: TUserName;
+  name?: TUserName;
   email: string;
-  password: string;
+  password?: string;
   phone?: string;
   address?: string;
   city?: string;

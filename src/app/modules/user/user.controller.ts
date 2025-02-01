@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { sendVerificationCode } from '../../middlewares/Email';
+import { uploadToFTP } from '../../middlewares/uploads';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { UserServices } from './user.service';
@@ -19,10 +20,22 @@ const createUser = catchAsync(async (req, res, next) => {
     next(err);
   }
 });
+const getAllUser = catchAsync(async (req, res, next) => {
+  try {
+    const result = await UserServices.getAllUserFromDB();
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'User retrieved successfully',
+      data: result,
+    });
+  } catch (err) {
+    next(err);
+  }
+});
 const getUser = catchAsync(async (req, res, next) => {
   try {
     const userEmail = req.query.email;
-    // console.log(userEmail);
     const email = { email: userEmail };
     const result = await UserServices.getUserFromDB(email);
     sendResponse(res, {
@@ -35,17 +48,23 @@ const getUser = catchAsync(async (req, res, next) => {
     next(err);
   }
 });
-const updateUser = catchAsync(async (req, res, next) => {
+const updateUser = catchAsync(async (req: any, res, next) => {
   try {
     const image = req.file;
+    const localFilePath = req.file.path;
+    const remoteFileName = req.file.filename;
+    // console.log(image);
+    await uploadToFTP(localFilePath, remoteFileName);
+    // const fileUrl = `https://bmw.bideex.com/public/uploads/${image?.filename}`;
+    // console.log(fileUrl);
     const user = req.body;
+    const dbUserId = user.id;
     const data = {
       name: {
         firstName: user.firstName,
         lastName: user.lastName,
         userName: user.userName,
       },
-      email: user?.email,
       address: user?.address,
       city: user?.city,
       zipCode: user?.zipCode,
@@ -54,7 +73,7 @@ const updateUser = catchAsync(async (req, res, next) => {
       phone: user?.phone,
       imagePath: image?.filename,
     };
-    const result = await UserServices.updateUserIntoDB(data);
+    const result = await UserServices.updateUserIntoDB(data, dbUserId);
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -83,6 +102,7 @@ const userEmailVerify = catchAsync(async (req, res, next) => {
 export const UserControllers = {
   createUser,
   getUser,
+  getAllUser,
   updateUser,
   userEmailVerify,
 };

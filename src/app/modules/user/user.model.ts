@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-this-alias */
 import { model, Schema } from 'mongoose';
 import { TUser, TUserName } from './user.interfacr';
 // import bcrypt from 'bcrypt';
@@ -34,7 +32,7 @@ const userSchema = new Schema<TUser>(
     },
     name: {
       type: userNameSchema,
-      required: true,
+      // required: true,
     },
     email: {
       type: String,
